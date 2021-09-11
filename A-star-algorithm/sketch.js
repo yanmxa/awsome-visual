@@ -1,11 +1,9 @@
 // https://en.wikipedia.org/wiki/A*_search_algorithm
 
-let cols = 80
-let rows = 80
+let cols, rows
 let w, h
 let path = []
-
-let grid = new Array(cols)
+let grid
 
 let openSet = []
 let closeSet = []
@@ -14,8 +12,11 @@ let end
 
 function setup() {
   console.log('A*')
-  createCanvas(600, 600);
+  cols = 160
+  rows = int(cols * (windowHeight / windowWidth))
+  createCanvas(windowWidth, windowHeight);
    
+  grid = new Array(cols)
   for(let i = 0; i < cols; i ++) {
     grid[i] = new Array(rows)
   }
