@@ -1,6 +1,8 @@
 
 class Bird {
   constructor(x, y) {
+    this.maxFitness = 20
+    this.fitness = random(0, this.maxFitness)
     this.acceleration = createVector(0, 0)
     this.velocity = createVector(random(-1, 1), random(-1, 1))
     this.position = createVector(x, y)
@@ -27,7 +29,7 @@ class Bird {
     let cohesion = this.cohesion(birds)        // For the average location (i.e. center) of all nearby birds, calculate steering vector towards that location
 
     // Arbitrarily weight these forces
-    separation.mult(1.5)
+    separation.mult(1.4)
     alignment.mult(1.0)
     cohesion.mult(1.0)
 
@@ -56,7 +58,8 @@ class Bird {
 
   render = () => {
     let theta = this.velocity.heading() + radians(90)      // rotated in the direction of velocity
-    fill(127)
+    let color = 100 + ((200 - 100) * (this.fitness / this.maxFitness))
+    fill(color)
     stroke(200)
     push()
     translate(this.position.x, this.position.y)
